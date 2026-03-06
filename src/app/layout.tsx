@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
+import { FloatingWA } from "@/components/layout/FloatingWA";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Corpore Kinesiología & Fisiatría",
+  title: "Samadhi ~ Estética Facial y Corporal | Rosario",
   description:
-    "Un espacio orientado al cuidado integral del movimiento. Tratamientos personalizados para rehabilitar lesiones de manera segura y eficaz en Rosario.",
+    "Espacio de bienestar y belleza en Rosario. Tratamientos faciales, corporales, masajes, reiki, criolipólisis y más. Conectá con tu mejor versión en Samadhi.",
+  keywords: [
+    "estética facial",
+    "estética corporal",
+    "masajes rosario",
+    "reiki rosario",
+    "criolipólisis",
+    "tratamientos faciales",
+    "depilación definitiva",
+    "belleza rosario",
+    "samadhi estética",
+  ],
   icons: {
-    icon: "/LogoBlancoFavIcon.png",
-    apple: "/LogoBlancoFavIcon.png",
+    icon: "/favicon.ico",
   },
 };
 
@@ -23,11 +34,11 @@ export default function RootLayout({
   return (
     <html lang="es" className="scroll-smooth">
       <body
-        className={`${outfit.className} min-h-screen bg-background text-foreground antialiased flex flex-col`}
+        className={`${inter.variable} ${inter.className} min-h-screen bg-background text-foreground antialiased flex flex-col`}
       >
         <Header />
         <main className="flex-1">{children}</main>
-
+        <FloatingWA />
       </body>
     </html>
   );

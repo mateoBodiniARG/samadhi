@@ -1,146 +1,218 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { MapPin, Navigation, ExternalLink } from "lucide-react";
-import { useRef } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Clock, Phone, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
-const MAPS_URL = "https://maps.app.goo.gl/4cLZqVTZemMHT3pS7";
-const MAPS_EMBED = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3346.886805390243!2d-60.64962049999999!3d-32.9803881!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b7ab65fef8f751%3A0x3e510ab4af9fbc79!2sCorpore%20Kinesiolog%C3%ADa%20y%20Fisiatr%C3%ADa!5e0!3m2!1ses-419!2sar!4v1772777778643!5m2!1ses-419!2sar";
+const WA_LINK =
+  "https://wa.me/5493413000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
+const MAPS_LINK =
+  "https://maps.google.com/?q=Mitre+4376+Rosario+Santa+Fe";
+
+const horarios = [
+  { dia: "Lunes a Viernes", hora: "9:00 – 20:00" },
+  { dia: "Sábados", hora: "9:00 – 14:00" },
+  { dia: "Domingos", hora: "Cerrado" },
+];
 
 export function Ubicacion() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
-    <section id="ubicacion" ref={ref} className="relative bg-muted/20 py-20 sm:py-28 overflow-hidden">
+    <section
+      id="ubicacion"
+      className="py-24 md:py-32 overflow-hidden"
+      style={{ background: "linear-gradient(180deg, #ffffff 0%, #f7fdf9 100%)" }}
+    >
+      <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]"
+            style={{ color: "#68DCD2" }}
+          >
+            Encontranos
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="leading-tight"
+            style={{
+              fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
+              fontWeight: 400,
+              color: "#333333",
+            }}
+          >
+            Visitanos en{" "}
+            <em style={{ color: "#68DCD2" }}>Rosario</em>
+          </motion.h2>
+        </div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          {/* Info cards */}
+          <div className="flex flex-col gap-6">
+            {/* Direccion */}
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="rounded-3xl p-7 flex gap-5"
+              style={{
+                background: "#f0fbfa",
+                border: "1px solid rgba(104, 220, 210, 0.2)",
+              }}
+            >
+              <div
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl"
+                style={{ background: "rgba(104, 220, 210, 0.15)" }}
+              >
+                <MapPin className="h-5 w-5" style={{ color: "#68DCD2" }} />
+              </div>
+              <div>
+                <h3
+                  className="mb-1 text-lg font-semibold"
+                  style={{ color: "#333333", fontWeight: 600 }}
+                >
+                  Dirección
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#4A4A4A" }}>
+                  Mitre 4376<br />
+                  Rosario, Santa Fe 2000<br />
+                  Argentina
+                </p>
+                <a
+                  href={MAPS_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold transition-opacity hover:opacity-70"
+                  style={{ color: "#68DCD2" }}
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  Ver en Google Maps
+                </a>
+              </div>
+            </motion.div>
 
+            {/* Horarios */}
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="rounded-3xl p-7 flex gap-5"
+              style={{
+                background: "#fdf5f5",
+                border: "1px solid rgba(242, 164, 167, 0.2)",
+              }}
+            >
+              <div
+                className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl"
+                style={{ background: "rgba(242, 164, 167, 0.15)" }}
+              >
+                <Clock className="h-5 w-5" style={{ color: "#F2A4A7" }} />
+              </div>
+              <div className="flex-1">
+                <h3
+                  className="mb-3 text-lg font-semibold"
+                  style={{ color: "#333333", fontWeight: 600 }}
+                >
+                  Horarios de Atención
+                </h3>
+                <div className="flex flex-col gap-2">
+                  {horarios.map((h) => (
+                    <div key={h.dia} className="flex justify-between text-sm">
+                      <span style={{ color: "#4A4A4A" }}>{h.dia}</span>
+                      <span
+                        className="font-semibold"
+                        style={{
+                          color:
+                            h.hora === "Cerrado" ? "#F2A4A7" : "#68DCD2",
+                        }}
+                      >
+                        {h.hora}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 max-w-6xl">
+            {/* Contacto */}
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="rounded-3xl p-7"
+              style={{
+                background: "linear-gradient(135deg, #68DCD2 0%, #5bc5bb 100%)",
+              }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <Phone className="h-5 w-5 text-white" />
+                <h3
+                  className="text-lg font-semibold text-white"
+                  style={{ fontWeight: 600 }}
+                >
+                  Reservá tu turno
+                </h3>
+              </div>
+              <p className="mb-5 text-sm text-white/80 leading-relaxed">
+                Escribinos por WhatsApp y te respondemos a la brevedad. ¡Sin esperas!
+              </p>
+              <Button
+                asChild
+                className="w-full rounded-full bg-white text-sm font-semibold transition-all hover:scale-105 hover:shadow-lg"
+                style={{ color: "#3a9e96" }}
+              >
+                <a href={WA_LINK} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon className="mr-2 h-4 w-4" />
+                  Pedir turno por WhatsApp
+                </a>
+              </Button>
+            </motion.div>
+          </div>
 
-        {/* ── Eyebrow ── */}
-        <motion.div
-          initial={{ opacity: 0, x: -12 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.4 }}
-          className="mb-10 flex items-center gap-3"
-        >
-          <span className="h-px w-8 bg-primary" />
-          <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
-            Dónde estamos
-          </span>
-        </motion.div>
-
-        {/* ── Headline ── */}
-        <motion.h2
-          initial={{ opacity: 0, y: 18 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-4xl sm:text-5xl font-black tracking-tight leading-[1.08] text-foreground mb-12"
-        >
-          Vení a{" "}
-          <em className="not-italic text-primary">visitarnos</em>
-        </motion.h2>
-
-        {/* ── Layout: flex row on desktop, column on mobile ── */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.5rem",
-          }}
-        >
-          {/* Map embed — full width, tall */}
+          {/* Map embed */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/8 w-full"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="relative w-full overflow-hidden rounded-3xl shadow-xl"
+            style={{
+              height: "460px",
+              border: "1px solid rgba(104, 220, 210, 0.2)",
+            }}
           >
             <iframe
-              title="Corpore Kinesiología y Fisiatría en Google Maps"
-              src={MAPS_EMBED}
+              title="Ubicación Samadhi Belleza"
+              src="https://maps.google.com/maps?q=Mitre+4376+Rosario+Santa+Fe+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
-              height="380"
-              style={{ border: 0, display: "block" }}
+              height="100%"
+              style={{ border: 0, filter: "saturate(0.8) brightness(1.02)" }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </motion.div>
-
-          {/* Info row — address + buttons side by side */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.45, delay: 0.2 }}
-            className="rounded-2xl bg-background border border-border shadow-sm"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: "1.5rem",
-              padding: "1.75rem 2rem",
-            }}
-          >
-            {/* Address block */}
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "2.75rem",
-                  height: "2.75rem",
-                  borderRadius: "0.875rem",
-                  flexShrink: 0,
-                }}
-                className="bg-primary/10"
-              >
-                <MapPin className="h-5 w-5 text-primary" strokeWidth={2} />
-              </div>
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground mb-1">
-                  Dirección
-                </p>
-                <p className="text-xl font-black tracking-tight text-foreground leading-tight">
-                  Entre Ríos 3753
-                </p>
-                <p className="text-sm text-muted-foreground mt-0.5">
-                  S2000 Rosario, Santa Fe
-                </p>
-              </div>
-            </div>
-
-            {/* CTA buttons */}
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <motion.a
-                href={MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-md hover:shadow-lg transition-shadow"
-              >
-                <Navigation className="h-4 w-4" strokeWidth={2.5} />
-                Cómo llegar
-              </motion.a>
-              <motion.a
-                href={MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="flex items-center gap-2 rounded-xl border border-border bg-muted/40 px-5 py-2.5 text-sm font-bold text-foreground hover:border-primary hover:text-primary transition-colors"
-              >
-                <ExternalLink className="h-4 w-4" strokeWidth={2.5} />
-                Ver en Maps
-              </motion.a>
+            {/* Overlay badge */}
+            <div
+              className="absolute bottom-4 left-4 flex items-center gap-2 rounded-2xl px-4 py-2.5 shadow-lg backdrop-blur-sm"
+              style={{ background: "rgba(255,255,255,0.92)" }}
+            >
+              <MapPin className="h-4 w-4 flex-shrink-0" style={{ color: "#68DCD2" }} />
+              <span className="text-xs font-semibold" style={{ color: "#333333" }}>
+                Samadhi · Mitre 4376, Rosario
+              </span>
             </div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );

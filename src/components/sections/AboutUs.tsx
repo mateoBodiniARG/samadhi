@@ -21,7 +21,7 @@ const stats = [
   { value: 5, suffix: "+", label: "Años de trayectoria", icon: Award },
   { value: 300, suffix: "+", label: "Pacientes acompañados", icon: Users },
   { value: 10, suffix: "", label: "Especialidades", icon: Layers },
-  { value: 5.0, suffix: "★", label: "Calificación en Google", icon: Star },
+  { value: 4.9, suffix: "★", label: "Calificación en Google", icon: Star },
 ];
 
 const specialties = [

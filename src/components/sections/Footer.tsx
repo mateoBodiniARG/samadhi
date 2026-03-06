@@ -1,164 +1,184 @@
 "use client";
 
-import {
-  Instagram,
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-} from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { MapPin, Instagram, Facebook, Heart, Sparkles } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
-import Image from "next/image";
 
-const WA_LINK = "https://walink.co/e12b25";
-const IG_LINK = "https://www.instagram.com/corporekinesio/";
+const WA_LINK =
+  "https://wa.me/5493413000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
+
+const navLinks = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#opiniones", label: "Opiniones" },
+  { href: "#ubicacion", label: "Ubicación" },
+];
+
+const serviceLinks = [
+  "Tratamientos Faciales",
+  "Masajes & Reiki",
+  "Criolipólisis",
+  "Depilación Definitiva",
+  "Manicuria",
+  "Pestañas & Cejas",
+];
 
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
     <footer
-      id="contacto"
-      className="relative overflow-hidden py-16 text-white"
-      style={{ background: "linear-gradient(135deg,#1a73e8 0%,#0d3870 100%)" }}
+      style={{
+        background: "linear-gradient(160deg, #1a3c38 0%, #0f2420 100%)",
+        color: "#a8d5d0",
+      }}
     >
-      {/* Decorative blobs */}
-      <div
-        className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-10 blur-3xl"
-        style={{ background: "#8AB4F8" }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full opacity-10 blur-3xl"
-        style={{ background: "#A6C8FF" }}
-      />
-
-      <div className="container relative z-10 mx-auto px-4 md:px-6">
-        <div className="grid gap-10 lg:grid-cols-4">
-
-          {/* Brand */}
-          <div className="space-y-5">
-            <div className="flex items-center gap-3">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full shadow-lg ring-2 ring-white/20 flex items-center justify-center bg-white">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full text-primary font-bold text-xl">
-                  C
-                </div>
+      {/* Main footer */}
+      <div className="container mx-auto px-6 md:px-8 max-w-6xl py-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+        >
+          {/* Brand col */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{
+                  background: "linear-gradient(135deg, #68DCD2 0%, #5bc5bb 100%)",
+                }}
+              >
+                <Sparkles className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-lg font-bold">Corpore</p>
-                <p className="text-xs font-semibold text-white/80">
-                  Kinesiología & Fisiatría
+                <p className="font-bold text-white tracking-wide">Samadhi</p>
+                <p className="text-xs" style={{ color: "#68DCD2" }}>
+                  Estética & Bienestar
                 </p>
               </div>
             </div>
-            <p className="max-w-xs text-sm text-white/70 leading-relaxed">
-              Un espacio orientado al cuidado integral del movimiento. Rehabilitamos lesiones de manera segura y eficaz.
+            <p className="text-sm leading-relaxed mb-6 opacity-80">
+              Un espacio de belleza, relajación y amor propio en el corazón de Rosario.
             </p>
-
-            {/* Social icons */}
-            <div className="flex gap-3 flex-wrap">
+            <p
+              className="text-sm italic mb-6"
+              style={{ color: "#a8e6e0", fontSize: "1rem" }}
+            >
+              "Cree en ti y todo será posible 🌸"
+            </p>
+            {/* Social */}
+            <div className="flex gap-3">
               {[
-                { href: IG_LINK, icon: <Instagram className="h-5 w-5" />, label: "Instagram" },
-                { href: WA_LINK, icon: <WhatsAppIcon className="h-5 w-5" />, label: "WhatsApp" },
-              ].map((s) => (
+                { Icon: Instagram, href: "#", label: "Instagram" },
+                { Icon: Facebook, href: "#", label: "Facebook" },
+              ].map(({ Icon, href, label }) => (
                 <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110"
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-full transition-all hover:scale-110"
                   style={{
-                    background: "rgba(255,255,255,0.1)",
-                    border: "1px solid rgba(255,255,255,0.2)",
+                    background: "rgba(104, 220, 210, 0.12)",
+                    color: "#68DCD2",
                   }}
                 >
-                  {s.icon}
+                  <Icon className="h-4 w-4" />
                 </a>
               ))}
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="flex h-9 w-9 items-center justify-center rounded-full transition-all hover:scale-110"
+                style={{
+                  background: "rgba(37, 211, 102, 0.15)",
+                  color: "#25D366",
+                }}
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+              </a>
             </div>
           </div>
 
-          {/* Contact info */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/50 mb-4">
+          {/* Nav col */}
+          <div>
+            <h4 className="mb-5 text-xs font-semibold uppercase tracking-widest" style={{ color: "#68DCD2" }}>
+              Navegación
+            </h4>
+            <ul className="flex flex-col gap-3">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm opacity-70 transition-opacity hover:opacity-100 hover:text-white"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services col */}
+          <div>
+            <h4 className="mb-5 text-xs font-semibold uppercase tracking-widest" style={{ color: "#68DCD2" }}>
+              Servicios
+            </h4>
+            <ul className="flex flex-col gap-3">
+              {serviceLinks.map((s) => (
+                <li key={s}>
+                  <Link
+                    href="#servicios"
+                    className="text-sm opacity-70 transition-opacity hover:opacity-100 hover:text-white"
+                  >
+                    {s}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact col */}
+          <div>
+            <h4 className="mb-5 text-xs font-semibold uppercase tracking-widest" style={{ color: "#68DCD2" }}>
               Contacto
-            </h3>
-            <a
-              href="tel:+5493413061524"
-              className="flex items-center gap-3 text-sm hover:text-white transition-colors"
-              style={{ color: "rgba(255,255,255,0.8)" }}
-            >
-              <span
-                className="flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 bg-white/10"
-              >
-                <Phone className="h-4 w-4" style={{ color: "#fff" }} />
-              </span>
-              3413 061524
-            </a>
-            <div
-              className="flex items-start gap-3 text-sm"
-              style={{ color: "rgba(255,255,255,0.8)" }}
-            >
-              <span
-                className="flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 mt-0.5 bg-white/10"
-              >
-                <MapPin className="h-4 w-4" style={{ color: "#fff" }} />
-              </span>
-              <span>
-                Entre Ríos 3753<br />
-                Rosario, Santa Fe
-              </span>
-            </div>
-          </div>
-
-          {/* Horarios */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/50 mb-4">
-              Horarios
-            </h3>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <span
-                  className="flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 bg-white/10"
-                >
-                  <Clock className="h-4 w-4" style={{ color: "#fff" }} />
+            </h4>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start gap-3 text-sm opacity-80">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" style={{ color: "#68DCD2" }} />
+                <span>
+                  Mitre 4376<br />
+                  Rosario, Santa Fe 2000
                 </span>
-                <div className="text-sm" style={{ color: "rgba(255,255,255,0.8)" }}>
-                  <p className="font-semibold text-white">Lunes a Viernes</p>
-                  <p>Abierto todos los días de la semana</p>
-                </div>
               </div>
+              <a
+                href={WA_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm opacity-80 transition-opacity hover:opacity-100 hover:text-white"
+              >
+                <WhatsAppIcon className="h-4 w-4 flex-shrink-0 text-[#25D366]" />
+                <span>Turnos por WhatsApp</span>
+              </a>
             </div>
           </div>
+        </motion.div>
+      </div>
 
-          {/* Info Adicional */}
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/50 mb-4">
-              Información Útil
-            </h3>
-            <div className="space-y-4">
-              <div>
-                <p className="font-semibold text-white text-sm">Accesibilidad</p>
-                <div className="flex flex-col gap-1 mt-1 text-sm text-white/80 leading-relaxed">
-                  <p>Espacio accesible para personas en silla de ruedas.</p>
-                  <p>Sanitarios accesibles para personas en silla de ruedas.</p>
-                </div>
-              </div>
-              <div className="pt-2">
-                <p className="font-semibold text-white text-sm">Medios de Pago</p>
-                <p className="text-sm text-white/80 mt-1 leading-relaxed">Tarjetas de débito.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom bar */}
-        <div
-          className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 sm:flex-row text-sm"
-          style={{ borderColor: "rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.4)" }}
-        >
-          <p className="text-center sm:text-left">© {new Date().getFullYear()} Corpore Kinesiología & Fisiatría. Todos los derechos reservados.</p>
-          <p className="text-center sm:text-right" style={{ color: "#F0F6FF" }}>
-            Hecho con ❤️ en Rosario por <a href="https://www.linkedin.com/in/mateobodini/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-white transition-colors underline decoration-white/30 underline-offset-4">MateoBodini</a>
+      {/* Bottom bar */}
+      <div
+        className="border-t py-5"
+        style={{ borderColor: "rgba(104, 220, 210, 0.1)" }}
+      >
+        <div className="container mx-auto px-6 md:px-8 max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-2 text-xs opacity-50">
+          <p>© {year} Samadhi Estética. Todos los derechos reservados.</p>
+          <p className="flex items-center gap-1">
+            Hecho con <Heart className="h-3 w-3 fill-current text-[#F2A4A7]" /> en Rosario
           </p>
         </div>
       </div>
