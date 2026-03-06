@@ -68,7 +68,7 @@ export function Footer() {
               className="text-sm italic mb-6"
               style={{ color: "#a8e6e0", fontSize: "1rem" }}
             >
-              "Cree en ti y todo será posible 🌸"
+              "Cree en ti y todo será posible"
             </p>
             {/* Social */}
             <div className="flex gap-3">

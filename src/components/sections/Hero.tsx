@@ -124,16 +124,6 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        {/* Emoji accent */}
-        <motion.p
-          custom={2}
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          className="text-3xl mb-6"
-        >
-          🌸
-        </motion.p>
 
         {/* Subtitle */}
         <motion.p
