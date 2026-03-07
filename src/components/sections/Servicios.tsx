@@ -220,7 +220,7 @@ export function Servicios() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.4, ease: "easeOut" as const }}
                     >
                         {/* Tagline */}
                         <p
@@ -233,8 +233,8 @@ export function Servicios() {
                         {/* Service Cards */}
                         <div
                             className={`grid grid-cols-1 gap-6 sm:grid-cols-2 ${cat.services.length === 4
-                                    ? "lg:grid-cols-4"
-                                    : "lg:grid-cols-3"
+                                ? "lg:grid-cols-4"
+                                : "lg:grid-cols-3"
                                 }`}
                         >
                             {cat.services.map((service, i) => {
