@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 
 const WA_LINK =
-    "https://wa.me/5493413000000?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios.";
+    "https://wa.me/5493413656207?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
 
 const categories = [
     {

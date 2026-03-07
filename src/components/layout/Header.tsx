@@ -23,7 +23,7 @@ const navLinks = [
 ];
 
 const WA_LINK =
-  "https://wa.me/5493413000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
+  "https://wa.me/5493413656207?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);

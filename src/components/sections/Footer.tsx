@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { MapPin, Instagram, Facebook, Heart, Sparkles } from "lucide-react";
+import { MapPin, Instagram, Facebook, Sparkles } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 const WA_LINK =
-  "https://wa.me/5493413000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
+  "https://wa.me/5493413656207?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20un%20turno.";
 
 const navLinks = [
   { href: "#inicio", label: "Inicio" },
@@ -73,8 +72,8 @@ export function Footer() {
             {/* Social */}
             <div className="flex gap-3">
               {[
-                { Icon: Instagram, href: "#", label: "Instagram" },
-                { Icon: Facebook, href: "#", label: "Facebook" },
+                { Icon: Instagram, href: "https://www.instagram.com/samadhibellezayrelax/", label: "Instagram" },
+                { Icon: Facebook, href: "https://www.facebook.com/samadhibellezayrelax/", label: "Facebook" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -113,12 +112,12 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <Link
+                  <a
                     href={l.href}
                     className="text-sm opacity-70 transition-opacity hover:opacity-100 hover:text-white"
                   >
                     {l.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -132,12 +131,12 @@ export function Footer() {
             <ul className="flex flex-col gap-3">
               {serviceLinks.map((s) => (
                 <li key={s}>
-                  <Link
+                  <a
                     href="#servicios"
                     className="text-sm opacity-70 transition-opacity hover:opacity-100 hover:text-white"
                   >
                     {s}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -178,7 +177,15 @@ export function Footer() {
         <div className="container mx-auto px-6 md:px-8 max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-2 text-xs opacity-50">
           <p>© {year} Samadhi Estética. Todos los derechos reservados.</p>
           <p className="flex items-center gap-1">
-            Hecho con <Heart className="h-3 w-3 fill-current text-[#F2A4A7]" /> en Rosario
+            Hecho con ❤️ en Rosario por{" "}
+            <a
+              href="https://www.linkedin.com/in/mateobodini/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              MateoBodini
+            </a>
           </p>
         </div>
       </div>
