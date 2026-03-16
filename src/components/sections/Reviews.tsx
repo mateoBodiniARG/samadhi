@@ -132,20 +132,20 @@ export function Reviews() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
             className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]"
-            style={{ color: "#68DCD2" }}
+            style={{ color: "#68DCD2",  willChange: "transform, opacity" }}
           >
             Google Reviews
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-4 text-3xl md:text-5xl font-semibold leading-tight"
-            style={{ color: "#333333" }}
+            style={{ color: "#333333",  willChange: "transform, opacity" }}
           >
             Lo que dicen nuestras{" "}
             <span style={{ color: "#F2A4A7" }}>clientas</span>
@@ -154,9 +154,10 @@ export function Reviews() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 flex items-center justify-center gap-2"
+            style={{ willChange: "opacity" }}
           >
             <GoogleIcon />
             <span className="text-sm font-semibold" style={{ color: "#333333" }}>
@@ -177,8 +178,9 @@ export function Reviews() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6, delay: 0.15 }}
+          style={{ willChange: "transform, opacity" }}
         >
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-5">

@@ -147,23 +147,24 @@ export function Servicios() {
                     <motion.p
                         initial={{ opacity: 0, y: 12 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.5 }}
                         className="mb-3 text-xs font-semibold uppercase tracking-[0.2em]"
-                        style={{ color: "#68DCD2" }}
+                        style={{ color: "#68DCD2", willChange: "transform, opacity" }}
                     >
                         Nuestros Servicios
                     </motion.p>
                     <motion.h2
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="mb-4 leading-tight"
                         style={{
                             fontSize: "clamp(2.2rem, 5vw, 3.8rem)",
                             fontWeight: 400,
                             color: "#333333",
+                            willChange: "transform, opacity",
                         }}
                     >
                         Todo lo que necesitás,{" "}
@@ -172,10 +173,10 @@ export function Servicios() {
                     <motion.p
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mx-auto max-w-xl text-base leading-relaxed"
-                        style={{ color: "#8a9ba8" }}
+                        style={{ color: "#8a9ba8", willChange: "opacity" }}
                     >
                         Desde tratamientos faciales hasta bienestar energético, combinamos
                         técnicas y tecnología para cuidarte de pies a cabeza.
@@ -186,9 +187,10 @@ export function Servicios() {
                 <motion.div
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="mb-10 flex flex-wrap items-center justify-center gap-3"
+                    style={{ willChange: "transform, opacity" }}
                 >
                     {categories.map((c, i) => {
                         const Icon = c.icon;
@@ -197,13 +199,14 @@ export function Servicios() {
                             <button
                                 key={c.id}
                                 onClick={() => setActive(i)}
-                                className="flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300"
+                                className="flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 active:scale-95 sm:active:scale-100"
                                 style={{
                                     background: isActive ? c.color : "rgba(255,255,255,0.8)",
                                     color: isActive ? "#ffffff" : "#8a9ba8",
                                     border: `1px solid ${isActive ? c.color : "rgba(104,220,210,0.2)"}`,
                                     boxShadow: isActive ? `0 8px 20px ${c.color}40` : "none",
                                     transform: isActive ? "scale(1.05)" : "scale(1)",
+                                    willChange: "transform, background-color, border-color",
                                 }}
                             >
                                 <Icon className="h-4 w-4" />
@@ -245,10 +248,11 @@ export function Servicios() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.4, delay: i * 0.08 }}
-                                        className="group relative rounded-3xl p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-default"
+                                        className="group relative rounded-3xl p-6 transition-all duration-300 hover:sm:-translate-y-2 hover:sm:shadow-xl active:scale-[0.98] sm:active:scale-100 cursor-default"
                                         style={{
                                             background: cat.lightBg,
                                             border: `1px solid ${cat.color}22`,
+                                            willChange: "transform, opacity",
                                         }}
                                     >
                                         <div

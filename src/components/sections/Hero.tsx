@@ -29,28 +29,35 @@ export function Hero() {
     >
       {/* Decorative blobs */}
       <div
-        className="pointer-events-none absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-20 blur-3xl"
-        style={{ background: "#68DCD2" }}
+        className="pointer-events-none absolute -top-32 -left-32 h-[500px] w-[500px] rounded-full opacity-20 blur-3xl sm:block hidden"
+        style={{ background: "#68DCD2", willChange: "filter" }}
       />
       <div
-        className="pointer-events-none absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-15 blur-3xl"
-        style={{ background: "#F2A4A7" }}
+        className="pointer-events-none absolute -bottom-24 -right-24 h-[400px] w-[400px] rounded-full opacity-15 blur-3xl sm:block hidden"
+        style={{ background: "#F2A4A7", willChange: "filter" }}
+      />
+      {/* Mobile-only simplified blob */}
+      <div
+        className="pointer-events-none absolute top-0 left-0 h-full w-full opacity-[0.08] blur-2xl sm:hidden block"
+        style={{
+          background: "radial-gradient(circle at 20% 20%, #68DCD2 0%, transparent 50%), radial-gradient(circle at 80% 80%, #F2A4A7 0%, transparent 50%)"
+        }}
       />
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full opacity-[0.06] blur-3xl"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[700px] w-[700px] rounded-full opacity-[0.06] blur-3xl sm:block hidden"
         style={{ background: "#68DCD2" }}
       />
 
-      {/* Floating decorative petals */}
+      {/* Floating decorative petals - Simplified for mobile */}
       {[
-        { size: 180, top: "8%", right: "6%", opacity: 0.12, delay: 0 },
-        { size: 100, top: "20%", left: "4%", opacity: 0.08, delay: 2 },
-        { size: 140, bottom: "12%", left: "8%", opacity: 0.10, delay: 1 },
-        { size: 80, bottom: "20%", right: "12%", opacity: 0.09, delay: 3 },
+        { size: 180, top: "8%", right: "6%", opacity: 0.12, delay: 0, desktopOnly: true },
+        { size: 100, top: "20%", left: "4%", opacity: 0.08, delay: 2, desktopOnly: false },
+        { size: 140, bottom: "12%", left: "8%", opacity: 0.10, delay: 1, desktopOnly: true },
+        { size: 80, bottom: "20%", right: "12%", opacity: 0.09, delay: 3, desktopOnly: false },
       ].map((p, i) => (
         <motion.div
           key={i}
-          className="pointer-events-none absolute rounded-full"
+          className={`pointer-events-none absolute rounded-full ${p.desktopOnly ? 'hidden sm:block' : 'block'}`}
           style={{
             width: p.size,
             height: p.size,
@@ -62,6 +69,7 @@ export function Hero() {
               i % 2 === 0
                 ? `rgba(104, 220, 210, ${p.opacity})`
                 : `rgba(242, 164, 167, ${p.opacity})`,
+            willChange: "transform, opacity",
           }}
           animate={{
             y: [0, -20, 0],
@@ -89,6 +97,7 @@ export function Hero() {
             background: "rgba(104, 220, 210, 0.12)",
             color: "#3a9e96",
             border: "1px solid rgba(104, 220, 210, 0.3)",
+            willChange: "transform, opacity",
           }}
         >
           <Sparkles className="h-3 w-3" />
@@ -106,18 +115,22 @@ export function Hero() {
             fontSize: "clamp(2.25rem, 6vw, 5rem)",
             fontWeight: 600,
             color: "#333333",
+            willChange: "transform, opacity",
           }}
         >
           Cree en ti y
+          <br className="sm:inline hidden" />
           <span
             style={{
-              display: "block",
+              display: "inline-block",
               background: "linear-gradient(135deg, #68DCD2 0%, #5bc5bb 50%, #F2A4A7 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               fontStyle: "italic",
               paddingBottom: "0.05em",
+              paddingLeft: "0.2em",
+              paddingRight: "0.5em",
             }}
           >
             todo será posible
@@ -132,7 +145,7 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           className="mx-auto mb-10 max-w-xl text-lg leading-relaxed"
-          style={{ color: "#8a9ba8", fontWeight: 400 }}
+          style={{ color: "#8a9ba8", fontWeight: 400, willChange: "transform, opacity" }}
         >
           Un espacio diseñado para que te reconectes con vos misma. Tratamientos
           faciales, corporales y de bienestar que cuidan tu cuerpo y tu alma.
@@ -145,11 +158,12 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          style={{ willChange: "transform, opacity" }}
         >
           <Button
             asChild
             size="lg"
-            className="rounded-full px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105"
+            className="rounded-full px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl hover:scale-105 active:scale-95"
             style={{
               background: "linear-gradient(135deg, #68DCD2 0%, #5bc5bb 100%)",
             }}
@@ -164,7 +178,7 @@ export function Hero() {
             asChild
             size="lg"
             variant="outline"
-            className="rounded-full px-8 py-6 text-base font-semibold transition-all hover:scale-105"
+            className="rounded-full px-8 py-6 text-base font-semibold transition-all hover:scale-105 active:scale-95"
             style={{
               color: "#4A4A4A",
               borderColor: "rgba(104, 220, 210, 0.4)",
@@ -182,6 +196,7 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           className="mt-16 flex flex-wrap items-center justify-center gap-10"
+          style={{ willChange: "transform, opacity" }}
         >
           {[
             { value: "+8", label: "Años de experiencia" },
@@ -205,7 +220,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 sm:flex hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
